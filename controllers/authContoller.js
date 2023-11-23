@@ -20,6 +20,33 @@ module.exports  = {
         catch (e){
             res.status(500).json(e)
         }
+    },
+
+    loginUser: async (req,res)=>{
+        try{
+            const user = await User.findOne({email: req.body.email})
+
+            // if the email entered not in the database
+            !user && res.status(401).json({
+                message: "Wrong Login Details"
+            })
+
+            const decryptedPassword = cryptoJS.AES.decrypt(user.password, process.env.SECRET)
+            const password = decryptedPassword.toString(cryptoJS.enc.Utf8)
+
+            // if the entered password not equal the user password
+            password !== req.body.password && res.status(401).json({
+                message: "Wrong Password"
+            })
+
+
+            res.status(200).json(user)
+
+        } catch(e){
+            res.status(500).json({
+                message: "Unexpected Error"
+            })
+        }
     }
 }
 // module.exports = {
