@@ -27,17 +27,14 @@ module.exports  = {
             const user = await User.findOne({email: req.body.email})
 
             // if the email entered not in the database
-            !user && res.status(401).json({
-                message: "Wrong Login Details"
-            })
+            !user && res.status(401).json( "Wrong Login Details"
+            )
 
             const decryptedPassword = cryptoJS.AES.decrypt(user.password, process.env.SECRET)
             const depassword = decryptedPassword.toString(cryptoJS.enc.Utf8)
 
             // if the entered password not equal the user password
-            depassword !== req.body.password && res.status(401).json({
-                message: "Wrong Password"
-            })
+            depassword !== req.body.password && res.status(401).json( "Wrong Password")
 
 
             // i want every feild except password , __v,createdAt ,updatedAt
@@ -47,9 +44,9 @@ module.exports  = {
             res.status(200).json(others)
 
         } catch(e){
-            res.status(500).json({
-                message: "Unexpected Error"
-            })
+            res.status(500).json(
+                "Unexpected Error"
+            )
         }
     }
 }
