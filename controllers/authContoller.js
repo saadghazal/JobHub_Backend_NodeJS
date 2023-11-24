@@ -32,15 +32,19 @@ module.exports  = {
             })
 
             const decryptedPassword = cryptoJS.AES.decrypt(user.password, process.env.SECRET)
-            const password = decryptedPassword.toString(cryptoJS.enc.Utf8)
+            const depassword = decryptedPassword.toString(cryptoJS.enc.Utf8)
 
             // if the entered password not equal the user password
-            password !== req.body.password && res.status(401).json({
+            depassword !== req.body.password && res.status(401).json({
                 message: "Wrong Password"
             })
 
 
-            res.status(200).json(user)
+            // i want every feild except password , __v,createdAt ,updatedAt
+            let {password , __v,createdAt ,updatedAt, ...others} = user._doc
+
+
+            res.status(200).json(others)
 
         } catch(e){
             res.status(500).json({
