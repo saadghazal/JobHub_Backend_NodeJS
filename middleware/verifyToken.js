@@ -15,7 +15,7 @@ let verifyToken = (req,res,next)=>{
 
             req.user = user
 
-            console.log(user)
+            console.log(req.user)
 
             next()
         })
@@ -26,8 +26,11 @@ let verifyToken = (req,res,next)=>{
 
 let verifyAndAuthorize = (req,res,next)=>{
     verifyToken(req,res,()=>{
-        if(req.user.id === req.params.id){
+        
+        if(req.user.userId === req.params.id){
+            
             next()
+            
         }else{
             res.status(403).json("You are restricted from preforming this operation")
         }

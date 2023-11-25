@@ -1,5 +1,6 @@
 const User = require("../models/User")
 const cryptoJS = require("crypto-js")
+const jwt = require("jsonwebtoken")
 
 
 module.exports  = {
@@ -24,11 +25,11 @@ module.exports  = {
 
     loginUser: async (req,res)=>{
         try{
+           
             const user = await User.findOne({email: req.body.email})
 
             // if the email entered not in the database
-            !user && res.status(401).json( "Wrong Login Details"
-            )
+            !user && res.status(401).json( "Wrong Login Details")
 
             const decryptedPassword = cryptoJS.AES.decrypt(user.password, process.env.SECRET)
             const depassword = decryptedPassword.toString(cryptoJS.enc.Utf8)
@@ -37,11 +38,21 @@ module.exports  = {
             depassword !== req.body.password && res.status(401).json( "Wrong Password")
 
 
+            const token = jwt.sign({
+                email: user.email,
+                userId: user._id,
+                username: user.username,
+            },
+            process.env.JWT_SECRET,
+            {
+                expiresIn: '50d'
+            }
+            )
             // i want every feild except password , __v,createdAt ,updatedAt
             let {password , __v,createdAt ,updatedAt, ...others} = user._doc
 
 
-            res.status(200).json(others)
+            res.status(200).json({...others,userToken: token})
 
         } catch(e){
             res.status(500).json(
