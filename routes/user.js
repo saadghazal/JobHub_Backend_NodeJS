@@ -8,6 +8,10 @@ let {verifyAndAuthorize , verifyToken} = require("../middleware/verifyToken")
 router.put("/:id",verifyAndAuthorize,userController.updateUser);
 
 
+// DELETE USER
+router.delete("/:id",verifyAndAuthorize,userController.deleteUser)
+
+
 
 
 
