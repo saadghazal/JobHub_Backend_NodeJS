@@ -34,6 +34,18 @@ module.exports = {
         }catch(error){
             res.status(500).json(error)
         }
+    },
+    getUser: async (req,res)=>{
+        try{
+            console.log("Hi getting user")
+            const user = await User.findById({_id:req.params.id})
+            console.log(user)
+
+            const {password,__v,createdAt,updatedAt,...others} = user._doc
+            res.status(200).json(others)
+        }catch(error){
+            res.status(500).json(error)
+        }
     }
 
 

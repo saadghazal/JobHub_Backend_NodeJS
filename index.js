@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const dotenv = require("dotenv")
+const morgan = require("morgan")
 const mongoose = require("mongoose")
 const authRoute = require("./routes/auth")
 const userRoute = require('./routes/user')
@@ -12,7 +13,7 @@ mongoose.connect(process.env.MONGO_DB_URL).then(result => {
 }).catch(err =>{
     console.log("NOT CONNECTED")
 })
-
+app.use(morgan("dev"))
 app.use(express.json())
 app.use("/api",authRoute)
 // localhost:5001/api/register

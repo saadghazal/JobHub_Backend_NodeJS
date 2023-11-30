@@ -11,6 +11,9 @@ router.put("/:id",verifyAndAuthorize,userController.updateUser);
 // DELETE USER
 router.delete("/:id",verifyAndAuthorize,userController.deleteUser)
 
+// GET USER
+router.get("/:id",verifyAndAuthorize,userController.getUser)
+
 
 
 
