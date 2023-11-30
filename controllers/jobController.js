@@ -37,6 +37,17 @@ module.exports = {
         }
     },
 
+    getJob: async (req,res)=>{
+        try {
+            const job = await Job.findById(req.params.id)
+            const {__v,createdAt,updatedAt,...jobData} = job._doc
+            res.status(200).json(jobData)
+
+        }catch (error){
+            res.status(500).json(error)
+        }
+    },
+
 
 
 } 
