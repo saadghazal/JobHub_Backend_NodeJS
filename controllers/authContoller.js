@@ -15,16 +15,14 @@ module.exports  = {
 
         try{
             const savedUser = await  newUser.save()
-            const token = jwt.sign({
-                email: savedUser.email,
-                userId: savedUser._id,
-            },
-            process.env.JWT_SECRET,
-            {
-                expiresIn: '50d'
-            }
-            )
+            
             let {password,createdAt,__v,updatedAt,...userData} = savedUser._doc
+            const token = jwt.sign({...userData},
+                process.env.JWT_SECRET,
+                {
+                    expiresIn: '50d'
+                }
+                )
             res.status(201).json({...userData,userToken:token})
         }
         catch (e){
@@ -44,22 +42,19 @@ module.exports  = {
             const depassword = decryptedPassword.toString(cryptoJS.enc.Utf8)
 
             // if the entered password not equal the user password
-            depassword !== req.body.password && res.status(401).json( "Wrong Password")
+            depassword !== req.body.password && res.status(401).json("Wrong Password")
 
 
-            const token = jwt.sign({
-                email: user.email,
-                userId: user._id,
-            },
-            process.env.JWT_SECRET,
-            {
-                expiresIn: '50d'
-            }
-            )
+            
             // i want every feild except password , __v,createdAt ,updatedAt
             let {password , __v,createdAt ,updatedAt, ...others} = user._doc
 
-
+            const token = jwt.sign({...others},
+                process.env.JWT_SECRET,
+                {
+                    expiresIn: '50d'
+                }
+                )
             res.status(200).json({...others,userToken: token})
 
         } catch(e){

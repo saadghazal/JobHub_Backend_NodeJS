@@ -28,6 +28,20 @@ let verifyAndAuthorize = (req,res,next)=>{
     verifyToken(req,res,()=>{
         
         if(req.user.userId === req.params.id){
+
+            next()
+            
+        }else{
+            res.status(403).json("You are restricted from preforming this operation")
+        }
+
+    }) 
+}
+
+   let verifyAndAdmin = (req,res,next)=>{
+    verifyToken(req,res,()=>{
+        
+        if(req.user.isAdmin){
             
             next()
             
@@ -40,5 +54,6 @@ let verifyAndAuthorize = (req,res,next)=>{
 
 module.exports = {
     verifyToken,
-    verifyAndAuthorize
+    verifyAndAuthorize,
+    verifyAndAdmin,
 };

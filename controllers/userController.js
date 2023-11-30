@@ -4,7 +4,6 @@ const cryptoJS = require("crypto-js")
 module.exports = {
     updateUser: async (req, res) => {
 
-        console.log("hi")
         if(req.body.password){
             // encrypt the password
             req.body.password = cryptoJS.AES.encrypt(req.body.password, process.env.SECRET).toString();
@@ -17,7 +16,6 @@ module.exports = {
                 {new: true}
             )
             const {password , __v, createdAt,...others} = UpdateUser._doc;
-            console.log("hi 2")
             res.status(200).json(others)
         }catch(e){
            
@@ -37,12 +35,20 @@ module.exports = {
     },
     getUser: async (req,res)=>{
         try{
-            console.log("Hi getting user")
             const user = await User.findById({_id:req.params.id})
             console.log(user)
 
             const {password,__v,createdAt,updatedAt,...others} = user._doc
             res.status(200).json(others)
+        }catch(error){
+            res.status(500).json(error)
+        }
+    },
+    getAllUsers: async (req,res)=>{
+        try{
+            const users = await User.find()
+
+            res.status(200).json(users)
         }catch(error){
             res.status(500).json(error)
         }
