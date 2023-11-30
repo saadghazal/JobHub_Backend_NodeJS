@@ -7,6 +7,7 @@ const JobSchema = new mongoose.Schema(
         description: {type: String, required: true},
         salary: {type: String, required: true},
         period: {type: String ,required: true}, // period means if the job salary will be monthly or daily etc.
+        hiring: {type: Boolean ,required:true},
         contract: {type: String,required: true}, // contract means if the job is a part-time or full-time etc.
         requirements: {type: Array,required: true},
         image_url: {type:String ,required: true},// company image

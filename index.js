@@ -5,6 +5,7 @@ const morgan = require("morgan")
 const mongoose = require("mongoose")
 const authRoute = require("./routes/auth")
 const userRoute = require('./routes/user')
+const jobRoute  = require ("./routes/job")
 dotenv.config();
 // process.env.VARIABLE_NAME
 
@@ -16,10 +17,14 @@ mongoose.connect(process.env.MONGO_DB_URL).then(result => {
 app.use(morgan("dev"))
 app.use(express.json())
 app.use("/api",authRoute)
+
 // localhost:5001/api/register
 
 app.use('/api/users',userRoute)
+
 // localhost:5001/api/users/id
+
+app.use("/api/jobs",jobRoute)
 
 
 
