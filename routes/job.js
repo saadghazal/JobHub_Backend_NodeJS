@@ -10,7 +10,7 @@ router.put("/:id",verifyAndAdmin,jobController.updateJob);
 
 
 // // DELETE JOB
-// router.delete("/:id",verifyAndAdmin,jobController.deleteJob)
+router.delete("/:id",verifyAndAdmin,jobController.deleteJob)
 
 // GET JOB
 // router.get("/:id",jobController.getJob)

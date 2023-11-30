@@ -26,7 +26,17 @@ module.exports = {
         }catch (error){
             res.status(500).json(error)
         }
-    }
+    },
+    deleteJob: async (req,res)=>{
+        try {
+            await Job.findByIdAndDelete(req.params.id)
+            res.status(200).json("Job Deleted Successfully!!!")
+
+        }catch (error){
+            res.status(500).json(error)
+        }
+    },
+
 
 
 } 
