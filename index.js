@@ -6,6 +6,7 @@ const mongoose = require("mongoose")
 const authRoute = require("./routes/auth")
 const userRoute = require('./routes/user')
 const jobRoute  = require ("./routes/job")
+const bookmarkRoute = require("./routes/bookmark")
 dotenv.config();
 // process.env.VARIABLE_NAME
 
@@ -25,6 +26,8 @@ app.use('/api/users',userRoute)
 // localhost:5001/api/users/id
 
 app.use("/api/jobs",jobRoute)
+
+app.use("/api/bookmarks",bookmarkRoute)
 
 
 
