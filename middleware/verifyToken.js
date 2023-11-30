@@ -26,7 +26,9 @@ let verifyToken = (req,res,next)=>{
 
 let verifyAndAuthorize = (req,res,next)=>{
     verifyToken(req,res,()=>{
-        
+        console.log("User Id"+ req.user.userId +"\n")
+        console.log("Params Id"+ req.params.id +"\n")
+
         if(req.user.userId === req.params.id){
 
             next()
