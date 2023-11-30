@@ -15,8 +15,17 @@ module.exports  = {
 
         try{
             const savedUser = await  newUser.save()
-
-            res.status(201).json(savedUser)
+            const token = jwt.sign({
+                email: savedUser.email,
+                userId: savedUser._id,
+            },
+            process.env.JWT_SECRET,
+            {
+                expiresIn: '50d'
+            }
+            )
+            let {password,createdAt,__v,updatedAt,...userData} = savedUser._doc
+            res.status(201).json({...userData,userToken:token})
         }
         catch (e){
             res.status(500).json(e)
@@ -29,7 +38,7 @@ module.exports  = {
             const user = await User.findOne({email: req.body.email})
 
             // if the email entered not in the database
-            !user && res.status(401).json( "Wrong Login Details")
+            !user && res.status(401).json("Wrong Login Details")
 
             const decryptedPassword = cryptoJS.AES.decrypt(user.password, process.env.SECRET)
             const depassword = decryptedPassword.toString(cryptoJS.enc.Utf8)
