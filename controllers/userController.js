@@ -35,7 +35,7 @@ module.exports = {
     },
     getUser: async (req,res)=>{
         try{
-            const user = await User.findById({_id:req.params.id})
+            const user = await User.findById(req.params.id)
             console.log(user)
 
             const {password,__v,createdAt,updatedAt,...others} = user._doc
