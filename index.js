@@ -14,7 +14,7 @@ mongoose.connect(process.env.MONGO_DB_URL).then(result => {
     console.log("CONNECTED")
 }).catch(err =>{
     console.log("NOT CONNECTED")
-})
+}) 
 app.use(morgan("dev"))
 app.use(express.json())
 app.use("/api",authRoute)
