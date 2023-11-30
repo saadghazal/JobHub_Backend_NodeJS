@@ -5,9 +5,8 @@ let {verifyAndAuthorize , verifyToken, verifyAndAdmin} = require("../middleware/
 // POST JOB
 router.post("/",verifyAndAdmin,jobController.createJob);
 
-// // UPDATE JOB 
-
-// router.put("/:id",verifyAndAdmin,jobController.updateJob);
+// UPDATE JOB
+router.put("/:id",verifyAndAdmin,jobController.updateJob);
 
 
 // // DELETE JOB
