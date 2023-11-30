@@ -19,7 +19,7 @@ router.get("/:id",jobController.getJob)
 router.get("/",jobController.getAllJobs)
 
 // SEARCH JOBS
-// router.get("/search/:key",jobController.searchJobs)
+router.get("/search/:key",jobController.searchJobs)
 
 
 
