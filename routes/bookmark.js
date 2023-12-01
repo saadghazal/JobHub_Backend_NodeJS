@@ -4,7 +4,7 @@ const bookmarkController = require("../controllers/bookmarkController");
 
 
 // CREATE BOOKMARKS
-router.post("/", bookmarkController.createBookmark);
+router.post("/", verifyAndAuthorize,bookmarkController.createBookmark);
 
 
 // DELETE BOOKMARKS
