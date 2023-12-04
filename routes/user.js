@@ -5,14 +5,14 @@ let {verifyAndAuthorize , verifyToken, verifyAndAdmin} = require("../middleware/
 
 // UPDATE USER 
 
-router.put("/:id",verifyAndAuthorize,userController.updateUser);
+router.put("/",verifyAndAuthorize,userController.updateUser);
 
 
 // DELETE USER
-router.delete("/:id",verifyAndAuthorize,userController.deleteUser)
+router.delete("/",verifyAndAuthorize,userController.deleteUser)
 
 // GET USER
-router.get("/:id",verifyAndAuthorize,userController.getUser)
+router.get("/",verifyAndAuthorize,userController.getUser)
 
 // GET All USERS
 router.get("/",verifyAndAdmin,userController.getAllUsers)
