@@ -27,7 +27,7 @@ let verifyToken = (req,res,next)=>{
 let verifyAndAuthorize = (req,res,next)=>{
     verifyToken(req,res,()=>{
 
-        if(req.user._id === req.params.id){
+        if(req.user._id || req.user.isAdmin){
 
             next()
             
