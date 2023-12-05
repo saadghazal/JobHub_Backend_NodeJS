@@ -3,7 +3,7 @@ const cryptoJS = require("crypto-js")
 
 module.exports = {
     updateUser: async (req, res) => {
-
+        console.log(req)
         if(req.body.password){
             // encrypt the password
             req.body.password = cryptoJS.AES.encrypt(req.body.password, process.env.SECRET).toString();
