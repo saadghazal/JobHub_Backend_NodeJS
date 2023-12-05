@@ -12,7 +12,8 @@ const  UserSchema = new mongoose.Schema(
         profile_image: {
             type: String,
             default: "https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg",
-        }
+        },
+        phone: {type:String}
     },{timestamps: true},
 );
 
