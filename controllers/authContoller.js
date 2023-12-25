@@ -17,7 +17,7 @@ module.exports  = {
             const savedUser = await  newUser.save()
             
             let {password,createdAt,__v,updatedAt,...userData} = savedUser._doc
-            console.log(...userData)
+            console.log(userData)
             const token = jwt.sign({...userData},
                 process.env.JWT_SECRET,
                 {
@@ -49,7 +49,7 @@ module.exports  = {
             
             // i want every feild except password , __v,createdAt ,updatedAt
             let {password , __v,createdAt ,updatedAt, ...others} = user._doc
-            console.log(...others)
+            console.log(others)
 
             const token = jwt.sign({...others},
                 process.env.JWT_SECRET,
