@@ -17,6 +17,7 @@ module.exports  = {
             const savedUser = await  newUser.save()
             
             let {password,createdAt,__v,updatedAt,...userData} = savedUser._doc
+            console.log(...userData)
             const token = jwt.sign({...userData},
                 process.env.JWT_SECRET,
                 {
