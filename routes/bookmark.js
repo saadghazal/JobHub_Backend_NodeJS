@@ -4,16 +4,16 @@ const bookmarkController = require("../controllers/bookmarkController");
 
 
 // CREATE BOOKMARKS
-router.post("/", verifyAndAuthorize,bookmarkController.createBookmark);
+router.post("/", verifyToken,bookmarkController.createBookmark);
 
 
 // DELETE BOOKMARKS
 
-router.delete("/:id", verifyAndAuthorize,bookmarkController.deleteBookmark);
+router.delete("/:id", verifyToken,bookmarkController.deleteBookmark);
 
 
 // GET BOOKMARKS THAT BELONGS TO THE USER
-router.get("/:userId", verifyAndAuthorize,bookmarkController.getBookmarks);
+router.get("/:userId", verifyToken,bookmarkController.getBookmarks);
 
 
 
