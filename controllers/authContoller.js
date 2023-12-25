@@ -49,6 +49,7 @@ module.exports  = {
             
             // i want every feild except password , __v,createdAt ,updatedAt
             let {password , __v,createdAt ,updatedAt, ...others} = user._doc
+            console.log(...others)
 
             const token = jwt.sign({...others},
                 process.env.JWT_SECRET,
