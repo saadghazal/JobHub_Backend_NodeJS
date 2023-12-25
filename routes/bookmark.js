@@ -9,11 +9,11 @@ router.post("/", verifyAndAuthorize,bookmarkController.createBookmark);
 
 // DELETE BOOKMARKS
 
-router.delete("/:id", bookmarkController.deleteBookmark);
+router.delete("/:id", verifyAndAuthorize,bookmarkController.deleteBookmark);
 
 
 // GET BOOKMARKS THAT BELONGS TO THE USER
-router.get("/:userId", bookmarkController.getBookmarks);
+router.get("/:userId", verifyAndAuthorize,bookmarkController.getBookmarks);
 
 
 
