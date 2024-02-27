@@ -13,7 +13,7 @@ router.delete("/:id", verifyToken,bookmarkController.deleteBookmark);
 
 
 // GET BOOKMARKS THAT BELONGS TO THE USER
-router.get("/:userId", verifyToken,bookmarkController.getBookmarks);
+router.get("/", verifyToken,bookmarkController.getBookmarks);
 
 
 
