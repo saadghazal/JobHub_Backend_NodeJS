@@ -32,7 +32,9 @@ module.exports = {
 
     deleteBookmark: async (req,res)=>{
         try{
-            await Bookmark.findByIdAndDelete(req.params.id)
+            const userId = req.user._id
+            const jobId = req.params.id
+            await Bookmark.findOneAndDelete({ userId, jobId})
 
             res.status(200).json("Bookmark Deleted Successfully")
 
