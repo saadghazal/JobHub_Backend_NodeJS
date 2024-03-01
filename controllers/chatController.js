@@ -19,7 +19,7 @@ module.exports = {
 
     isChat = await User.populate(isChat,{
         path: 'latestMessage.sender',
-        select: 'username email profile'
+        select: 'username email profile_image'
     })
 
     if(isChat.length > 0){
@@ -58,7 +58,7 @@ module.exports = {
         .then(async (results) => {
           results = await User.populate(results, {
             path: "latestMessage.sender",
-            select: "username email profile",
+            select: "username email profile_image",
           });
           res.status(200).send(results)
         });

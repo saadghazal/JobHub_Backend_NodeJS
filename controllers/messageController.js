@@ -13,7 +13,7 @@ module.exports = {
 
       /// Find Messages with pagination
       let messages = await Message.find({ chat: req.params.id })
-        .populate("sender", "username profile email")
+        .populate("sender", "username profile_image email")
         .populate("chat")
         .sort({ createdAt: -1 })// Sort Messages Descending
         .skip(skipMessages)
@@ -21,7 +21,7 @@ module.exports = {
         
         messages = await User.populate(messages,{
           path: 'chat.users',
-          select: 'username profile email'
+          select: 'username profile_image email'
         })
         res.json(messages)
     } catch (error) {
@@ -48,11 +48,11 @@ module.exports = {
     try {
       let message = await Message.create(newMessage);
 
-      message = await message.populate("sender", "username profile email");
+      message = await message.populate("sender", "username profile_image email");
       message = await message.populate("chat");
       message = await User.populate(message, {
         path: "chat.users",
-        select: "username profile email",
+        select: "username profile_image email",
       });
 
       await Chat.findByIdAndUpdate(req.body.chatId, { latestMessage: message });
