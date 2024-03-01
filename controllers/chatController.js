@@ -29,7 +29,7 @@ module.exports = {
             chatName: req.user._id,
             isGroupChat : false,
             users: [
-                req.user.id,userId,
+                req.user._id,userId,
             ]
         }
         try {
