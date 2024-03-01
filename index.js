@@ -7,6 +7,8 @@ const authRoute = require("./routes/auth")
 const userRoute = require('./routes/user')
 const jobRoute  = require ("./routes/job")
 const bookmarkRoute = require("./routes/bookmark")
+const chatRoute = require('./routes/chat')
+const messageRoute = require('./routes/messages')
 dotenv.config();
 // process.env.VARIABLE_NAME
 
@@ -28,6 +30,8 @@ app.use('/api/users',userRoute)
 app.use("/api/jobs",jobRoute)
 
 app.use("/api/bookmarks",bookmarkRoute)
+app.use('/api/chats',chatRoute)
+app.user('/api/messages',messageRoute)
 
 
 

@@ -6,7 +6,7 @@ let {verifyAndAuthorize , verifyToken, verifyAndAdmin} = require("../middleware/
 router.post("/",verifyToken,messageController.sendMessage);
 
 // GET ALL MESSAGES
-// router.get("/:id",verifyAndAdmin,messageController.getAllMessages);
+router.get("/:id",verifyToken,messageController.getAllMessages);
 
 
 
