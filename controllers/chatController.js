@@ -26,7 +26,7 @@ module.exports = {
         res.send(isChat[0])
     }else{
         let chatData = {
-            chatName: req.user.id,
+            chatName: req.user._id,
             isGroupChat : false,
             users: [
                 req.user.id,userId,
@@ -35,6 +35,7 @@ module.exports = {
         try {
             const createdChat = await Chat.create(chatData)
             const fullChat = await Chat.findOne({_id: createdChat._id}).populate('users','-password')
+            console.log(fullChat)
             res.status(200).json(fullChat)
         } catch (error) {
             res.status(400).json("Failed to create chat")
