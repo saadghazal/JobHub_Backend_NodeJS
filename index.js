@@ -31,7 +31,7 @@ app.use("/api/jobs",jobRoute)
 
 app.use("/api/bookmarks",bookmarkRoute)
 app.use('/api/chats',chatRoute)
-app.user('/api/messages',messageRoute)
+app.use('/api/messages',messageRoute)
 
 
 
