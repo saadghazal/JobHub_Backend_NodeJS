@@ -6,7 +6,7 @@ let {verifyAndAuthorize , verifyToken, verifyAndAdmin} = require("../middleware/
 router.post("/",verifyToken,chatController.accessChat);
 
 // GET CHATS
-router.get("/:id",verifyToken,chatController.getChat);
+router.get("/",verifyToken,chatController.getChat);
 
 
 
