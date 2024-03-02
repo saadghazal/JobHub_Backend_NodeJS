@@ -72,10 +72,10 @@ io.on("connection",(socket)=>{
         console.log('User Joined: '+room)
     })
 
-    socket.on('new message',(newMessageString)=>{
-        let chat = newMessageString.chat;
+    socket.on('new message',(newMessageReceived)=>{
+        let chat = newMessageReceived.chat;
         let room = chat._id
-        let sender = newMessageString.sender
+        let sender = newMessageReceived.sender
         let senderId = sender._id
 
         if(!sender || !senderId){
